@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
   <groupId>org.kuali.kfs</groupId>
-  <artifactId>kfs-rice</artifactId>
+  <artifactId>kfs-module</artifactId>
   <versioning>
     <versions>
       <version>4.1.1-maven-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20120301232037</lastUpdated>
+    <lastUpdated>20120301231531</lastUpdated>
   </versioning>
 </metadata>
