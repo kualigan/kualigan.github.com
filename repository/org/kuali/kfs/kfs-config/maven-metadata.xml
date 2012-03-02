@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.kuali.kfs</groupId>
+  <artifactId>kfs-config</artifactId>
+  <versioning>
+    <versions>
+      <version>4.1.1-maven-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20120301231517</lastUpdated>
+  </versioning>
+</metadata>
