@@ -1,0 +1,164 @@
+<!--
+ Copyright 2007-2010 The Kuali Foundation
+ 
+ Licensed under the Educational Community License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.opensource.org/licenses/ecl2.php
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<name>Kuali Rice Ldap Integration</name>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.kuali.rice</groupId>
+		<artifactId>rice</artifactId>
+		<version>1.0.3</version>
+	</parent>
+	<artifactId>rice-ldap</artifactId>
+
+	<properties>
+		<!-- must provide an explicit pattern - surefire default does not work
+			b/c of non-unit test classes that are included in default expression -->
+		<test.includes>**/*Test.java</test.includes>
+
+		<acegi.version>1.0.6</acegi.version>
+		<asm.version>2.2.3</asm.version>
+		<backport-util-concurrent.version>2.1</backport-util-concurrent.version>
+		<bcel.version>5.1</bcel.version>
+		<bcprov.version>1.45</bcprov.version>
+		<bsf.version>2.4.0</bsf.version>
+		<casclient.version>2.1.1</casclient.version>
+		<cas-client-core.version>3.1.6</cas-client-core.version>
+		<cglib.version>2.1_3</cglib.version>
+		<commons-beanutils.version>1.7.0</commons-beanutils.version>
+		<commons-codec.version>1.3</commons-codec.version>
+		<commons-collections.version>3.2</commons-collections.version>
+		<commons-dbcp.version>1.2.1</commons-dbcp.version>
+		<commons-fileupload.version>1.2.1</commons-fileupload.version>
+		<commons-httpclient.version>3.0.1</commons-httpclient.version>
+		<commons-io.version>1.4</commons-io.version>
+		<commons-lang.version>2.3</commons-lang.version>
+		<commons-logging.version>1.1</commons-logging.version>
+		<commons-pool.version>1.2</commons-pool.version>
+		<concurrent.version>1.3.4</concurrent.version>
+		<connector-api.version>1.5</connector-api.version>
+		<cxf.version>2.1.5</cxf.version>
+		<db-ojb.version>1.0.4-patch3</db-ojb.version>
+		<derby.version>10.2.2.0</derby.version>
+		<displaytag.version>1.1</displaytag.version>
+		<dwr.version>1.1.3</dwr.version>
+		<groovy.version>1.5.4</groovy.version>
+		<hibernate-entitymanager.version>3.3.1.ga</hibernate-entitymanager.version>
+		<hibernate.version>3.2.6.ga</hibernate.version>
+		<htmlunit.version>1.13</htmlunit.version>
+		<jasper-compiler-jdt.version>5.5.15</jasper-compiler-jdt.version>
+		<jasper-compiler.version>5.5.15</jasper-compiler.version>
+		<jasper-runtime.version>5.5.15</jasper-runtime.version>
+		<javamail.version>1.4</javamail.version>
+		<jaxen.version>1.1.1</jaxen.version>
+		<jdom.version>1.0</jdom.version>
+		<jetty.version>6.1.1</jetty.version>
+		<jmeter.version>2.3-RC4</jmeter.version>
+		<jotm.version>2.0.10</jotm.version>
+		<jstl.version>1.1.2</jstl.version>
+		<jta.version>1.0.1B</jta.version>
+		<junit.version>4.4</junit.version>
+		<log4j.version>1.2.14</log4j.version>
+		<mysql-connector-java.version>5.1.5</mysql-connector-java.version>
+		<ojdbc14.version>10.2.0.3.0</ojdbc14.version>
+		<oro.version>2.0.8</oro.version>
+		<oscache.version>2.3.2</oscache.version>
+		<quartz.version>1.6.0</quartz.version>
+		<servlet-api.version>2.4</servlet-api.version>
+		<spring-modules-ojb.version>0.8a</spring-modules-ojb.version>
+		<spring.version>2.5.6</spring.version>
+		<struts-el.version>1.2.9</struts-el.version>
+		<struts.version>1.2.9</struts.version>
+		<taglibs-standard.version>1.1.2</taglibs-standard.version>
+		<wss4j.version>1.5.1</wss4j.version>
+		<xalan.version>2.7.0</xalan.version>
+		<xapool.version>1.5.0-patch3</xapool.version>
+		<xercesImpl.version>2.9.1</xercesImpl.version>
+		<xml-apis.version>1.0.b2</xml-apis.version>
+		<xstream.version>1.2.2</xstream.version>
+		<build.plugins.plugin.version>1.0-beta-4</build.plugins.plugin.version>
+		<reporting.plugins.plugin.version>2.1.2</reporting.plugins.plugin.version>
+		<surefire.report.plugin.version>2.5</surefire.report.plugin.version>
+	</properties>
+
+    <repositories>
+      <repository>
+        <id>kr-repo</id>
+        <name>Kuali Foundation</name>
+        <layout>default</layout>
+        <url>https://test.kuali.org/maven/</url>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+      </repository>
+    </repositories>
+
+	<dependencies>
+      <dependency>
+        <groupId>org.springframework.ldap</groupId>
+        <artifactId>spring-ldap-core</artifactId>
+        <version>1.3.0.RELEASE</version>        
+        <exclusions>
+          <exclusion>
+            <artifactId>commons-logging</artifactId>
+            <groupId>commons-logging</groupId>
+          </exclusion>
+          <!--
+              <exclusion>
+              <artifactId>commons-lang</artifactId>
+              <groupId>commons-lang</groupId>
+              </exclusion>
+          -->
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.ldap</groupId>
+        <artifactId>spring-ldap-core-tiger</artifactId>
+        <version>1.3.0.RELEASE</version>
+        <!--
+            <exclusions>
+            <exclusion>
+            <artifactId>commons-lang</artifactId>
+            <groupId>commons-lang</groupId>
+            </exclusion>
+            </exclusions>
+        -->
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-core</artifactId>
+        <version>2.0.6.RELEASE</version>
+        <!--
+            <exclusions>
+            <exclusion>
+            <artifactId>commons-lang</artifactId>
+            <groupId>commons-lang</groupId>
+            </exclusion>
+            </exclusions>
+        -->
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>rice-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>rice-impl</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+	</dependencies>
+
+</project>
